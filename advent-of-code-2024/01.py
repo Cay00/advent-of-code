@@ -6,7 +6,20 @@
 #   3 9
 #   3 3
 #
-#   test answer: 11
+#   test answer 1: 11
+#   test answer 2: 31
+
+def distance(column1, column2):
+    return sum(abs(a - b) for a, b in zip(column1, column2))
+
+
+def score(column1, column2):
+    score = 0
+    for number in column1:
+        multiplier = column2.count(number)
+        score += multiplier * number
+    return score
+
 
 column1 = []
 column2 = []
@@ -25,6 +38,6 @@ while True:
 column1 = sorted(column1)
 column2 = sorted(column2)
 
-distance = sum(abs(a - b) for a, b in zip(column1, column2))
+print(distance(column1, column2))
 
-print(distance)
+print(score(column1, column2))
