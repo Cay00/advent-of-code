@@ -2,8 +2,12 @@
 #   The elves also need a little extra paper for each present: the area of the smallest side.
 #   How many total square feet of wrapping paper should they order?
 
-def multiplier(l, w, h):
+def multiplier(numbers):
     # Input l, w, h
+    l = numbers[0]
+    w = numbers[1]
+    h = numbers[2]
+
     lw = l * w
     wh = w * h
     hl = l * h
@@ -14,13 +18,26 @@ def multiplier(l, w, h):
     return total_area
 
 
-total = 0
+def ribbon(numbers):
+    total_length = numbers[0] * numbers[1] * numbers[2]
+
+    numbers.sort()
+    total_length += 2 * numbers[0] + 2 * numbers[1]
+
+    return total_length
+
+
+total_paper = 0
+total_ribbon = 0
 
 while True:
     line = input()
     if not line:
         break
     l, w, h = map(int, line.split('x'))
-    total += multiplier(l, w, h)
+    numbers = [l, w, h]
+    total_paper += multiplier(numbers)
+    total_ribbon += ribbon(numbers)
 
-print(total)
+print(total_paper)
+print(total_ribbon)
