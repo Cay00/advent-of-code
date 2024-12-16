@@ -28,4 +28,3 @@ def coder_2(key):
 key = input()
 print(coder(key))
 print(coder_2(key))
-3938038
