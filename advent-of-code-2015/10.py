@@ -22,4 +22,5 @@ for i in range(50):
     line = sequences(line)
     if i == 40 - 1:
         print(len(line))
-print(len(line))
+    if i == 50 - 1:
+        print(len(line))
