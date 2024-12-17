@@ -79,4 +79,5 @@ while True:
         break
     instructions.append(line)
 
-print(apply_instruction(instructions))
+initial_values = apply_instruction(instructions)
+print(initial_values['a'])
