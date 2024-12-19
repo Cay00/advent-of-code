@@ -33,6 +33,32 @@ def analyse(text):
     return None
 
 
+def analyse_2(text):
+    data = parse_input(text)
+
+    for sue, properties in data.items():
+        match = True
+
+        for prop, value in properties.items():
+            if prop in mfcsam_results:
+                if prop in {'cats', 'trees'}:
+                    if value <= mfcsam_results[prop]:
+                        match = False
+                        break
+                elif prop in {'pomeranians', 'goldfish'}:
+                    if value >= mfcsam_results[prop]:
+                        match = False
+                        break
+                else:
+                    if value != mfcsam_results[prop]:
+                        match = False
+                        break
+        if match:
+            return sue
+
+    return None
+
+
 mfcsam_results = {
     "children": 3,
     "cats": 7,
@@ -55,4 +81,6 @@ while True:
     text.append(line)
 
 answer = analyse(text)
+print(answer)
+answer = analyse_2(text)
 print(answer)
