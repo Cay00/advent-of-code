@@ -18,24 +18,28 @@ def parse_input(text):
 def calculate(text):
     data = parse_input(text)
     max_distance = 0
+    max_points = 0
     total_time = 2503  # seconds
-    current_leader = None
 
-    for name, (speed, time, rest, distance, points) in data.items():
-        cycle_time = time + rest
-        distance = 0
-
-        # Total distance
-        for i in range(total_time):
-            if i % cycle_time < time:
+    for i in range(total_time):
+        max_distance = 0
+        for name, (speed, time, rest, distance, points) in data.items():
+            # Total distance
+            if i % (time + rest) < time:
                 distance += speed
+            # Max distance
+            if distance > max_distance:
+                max_distance = distance
+            data[name] = (speed, time, rest, distance, points)
 
-        # Max distance
-        if distance > max_distance:
-            max_distance = distance
-            current_leader = name
+        for name, (speed, time, rest, distance, points) in data.items():
+            if distance >= max_distance:
+                points += 1
+                if points > max_points:
+                    max_points = points
+            data[name] = (speed, time, rest, distance, points)
 
-    return current_leader, max_distance
+    return max_distance, max_points
 
 
 text = []
