@@ -50,5 +50,5 @@ while True:
         break
     text.append(line)
 
-first = calculate(text)
-print(first)
+answer = calculate(text)
+print(answer)
